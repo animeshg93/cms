@@ -18,12 +18,12 @@ export default function App() {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group>
           <Form.Label>First Name </Form.Label>
-          <input name="first" ref={register} />
+          <Form.Control name="first" type="text" ref={register} />
         </Form.Group>
 
         <Form.Group>
           <Form.Label>Last Name </Form.Label>
-          <input name="last" ref={register} />
+          <Form.Control name="last" type="text" ref={register} />
         </Form.Group>
         
         <Button variant="primary" type="submit">Submit</Button>
