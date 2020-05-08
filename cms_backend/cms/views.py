@@ -13,7 +13,7 @@ def publish(request):
 	if request.method == "POST":
 			body = json.loads(request.body)
 			name=Name.objects.create(first_name=body['first_name'],last_name=body['last_name'])
-			return JsonResponse("Success!!",safe=False)
+			return JsonResponse({"status":"Success"})
 
 def getNames(request):
 	lisst = list(Name.objects.values())
