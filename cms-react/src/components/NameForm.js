@@ -8,13 +8,12 @@ export default function NameForm() {
   const { register, handleSubmit, watch, errors } = useForm();
 
   const onSubmit = function(data){
-    fetch('http://localhost:3000/cms/publish/', {
+    fetch('http://localhost:3000/cms/login/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }).then(resp=> resp.json())
-      .then(data=> console.log(data));
-      document.getElementById("name-form").reset();
+      .then(document.getElementById("name-form").reset());
   }
 
   const centerStyle = {
