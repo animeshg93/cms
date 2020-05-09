@@ -1,19 +1,25 @@
 import React from 'react';
 import {useForm} from 'react-hook-form'
 import { Form,Button } from 'react-bootstrap';
+import { withRouter} from 'react-router-dom';
 
-
-
-export default function NameForm() {
+export default function NameForm(props) {
   const { register, handleSubmit, watch, errors } = useForm();
 
   const onSubmit = function(data){
-    fetch('http://localhost:3000/cms/login/', {
+    fetch(`http://localhost:3000/cms/${props.action}/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }).then(resp=> resp.json())
-      .then(document.getElementById("name-form").reset());
+      .then(redirect);
+  }
+
+  const redirect=function(data){
+    document.getElementById("name-form").reset()
+    if(data.status==="SUCCESS" && props.action === "login"){
+      props.history.push('/home');
+    }
   }
 
   const centerStyle = {
@@ -35,7 +41,7 @@ export default function NameForm() {
           <Form.Control name="last_name" type="text" ref={register} />
         </Form.Group>
         
-        <Button variant="primary" type="submit">Submit</Button>
+        <Button variant="primary" type="submit">{props.button}</Button>
       </Form>
     </div>
   );

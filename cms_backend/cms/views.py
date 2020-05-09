@@ -25,6 +25,8 @@ def login(request):
 				Name.objects.get(first_name=body["first_name"])
 			except Exception as e:
 				return JsonResponse({"status":"FAILED","name":body["first_name"]})
+
+			# Need to change return value
 			return JsonResponse({"status":"SUCCESS"})
 
 
