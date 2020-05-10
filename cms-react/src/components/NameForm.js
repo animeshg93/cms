@@ -32,13 +32,13 @@ export default function NameForm(props) {
     <div style={centerStyle}>
       <Form onSubmit={handleSubmit(onSubmit)} id="name-form">
         <Form.Group>
-          <Form.Label>First Name </Form.Label>
-          <Form.Control name="first_name" type="text" ref={register} />
+          <Form.Label>Username</Form.Label>
+          <Form.Control name="username" type="text" ref={register} />
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Last Name </Form.Label>
-          <Form.Control name="last_name" type="text" ref={register} />
+          <Form.Label>Password</Form.Label>
+          <Form.Control name="password" type="text" ref={register} />
         </Form.Group>
         
         <Button variant="primary" type="submit">{props.button}</Button>

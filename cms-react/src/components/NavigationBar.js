@@ -6,7 +6,7 @@ export default function NavigationBar(){
 		<Navbar bg="dark" variant="dark">
 			<Nav className="mr-auto">
 		      <Nav.Link href="/login">Login</Nav.Link>
-		      <Nav.Link href="/admin">Add Admin</Nav.Link>
+		      <Nav.Link href="/admin">Add User</Nav.Link>
 		    </Nav>
 		</Navbar>
 	)
