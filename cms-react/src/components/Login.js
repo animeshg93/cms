@@ -2,12 +2,14 @@ import React from 'react';
 import {useForm} from 'react-hook-form'
 import { Form,Button } from 'react-bootstrap';
 import { withRouter} from 'react-router-dom';
+import NavigationBar from './NavigationBar'
 
-export default function NameForm(props) {
+
+export default function Login(props) {
   const { register, handleSubmit, watch, errors } = useForm();
 
   const onSubmit = function(data){
-    fetch(`http://localhost:3000/cms/${props.action}/`, {
+    fetch(`http://localhost:3000/cms/login/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
@@ -17,7 +19,7 @@ export default function NameForm(props) {
 
   const redirect=function(data){
     document.getElementById("name-form").reset()
-    if(data.status==="SUCCESS" && props.action === "login"){
+    if(data.status==="SUCCESS"){
       props.history.push('/home');
     }
   }
@@ -29,6 +31,8 @@ export default function NameForm(props) {
   }
 
   return (
+    <>
+    <NavigationBar />
     <div style={centerStyle}>
       <Form onSubmit={handleSubmit(onSubmit)} id="name-form">
         <Form.Group>
@@ -41,9 +45,10 @@ export default function NameForm(props) {
           <Form.Control name="password" type="password" ref={register} />
         </Form.Group>
         
-        <Button variant="primary" type="submit">{props.button}</Button>
+        <Button variant="primary" type="submit">Login</Button>
       </Form>
     </div>
+    </>
   );
 }
 
