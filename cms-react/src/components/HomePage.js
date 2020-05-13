@@ -1,7 +1,34 @@
-import React from 'react';
+import React,{ useEffect, useState }  from 'react';
+import { Button } from 'react-bootstrap';
+import { withRouter} from 'react-router-dom';
 
-export default function HomePage(){
+export default function HomePage(props){
+	const [message, setMessage] = useState('');
+
+	useEffect(() => {
+		fetch('http://localhost:3000/cms')
+		.then(resp=> resp.json())
+		.then(shouldRedirect)	
+		})
+	
+
+	const shouldRedirect = function(data){
+		if(data.status == "Login failed")
+			props.history.push('/login')
+		else setMessage(data.status)
+	}
+
+	const logout = function(){
+		fetch('http://localhost:3000/cms/logout')
+		.then(resp=> resp.json())
+		.then(props.history.push('/login'))
+	}
+
 	return(
-		<h1>Welcome to the Home Screen</h1>
+		<>
+			<h1>{message}</h1>
+			<Button variant="primary" type="submit" onClick={logout}>Logout</Button>
+		</>
+	
 	)
 }

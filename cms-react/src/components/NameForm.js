@@ -1,25 +1,18 @@
 import React from 'react';
 import {useForm} from 'react-hook-form'
 import { Form,Button } from 'react-bootstrap';
-import { withRouter} from 'react-router-dom';
+import styles from '../css/mystyle.module.css'
 
 export default function NameForm(props) {
   const { register, handleSubmit, watch, errors } = useForm();
 
   const onSubmit = function(data){
-    fetch(`http://localhost:3000/cms/${props.action}/`, {
+    fetch(`http://localhost:3000/cms/addAdmin/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }).then(resp=> resp.json())
-      .then(redirect);
-  }
-
-  const redirect=function(data){
-    document.getElementById("name-form").reset()
-    if(data.status==="SUCCESS" && props.action === "login"){
-      props.history.push('/home');
-    }
+      .then(document.getElementById("name-form").reset());
   }
 
   const centerStyle = {

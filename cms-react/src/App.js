@@ -7,10 +7,9 @@ import { BrowserRouter, Route } from "react-router-dom"
 
 export default function App() {
   return (
-  	<>
-	  	
+  	<>	
 	  	<BrowserRouter>
-	    	<Route path="/" component={Login}  exact />
+	    	<Route path="/login" component={Login}  exact />
 	    	<Route path="/admin" render={(props) => <NameForm {...props} action="addAdmin" button="Add"/>}  />
 	    	<Route path="/home" component={HomePage} />
 	     </BrowserRouter>
