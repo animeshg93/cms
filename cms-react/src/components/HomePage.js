@@ -11,17 +11,10 @@ export default function HomePage(props){
 		.then(shouldRedirect)	
 		})
 	
-
 	const shouldRedirect = function(data){
 		if(data.status == "Login failed")
 			props.history.push('/login')
 		else setMessage(data.status)
-	}
-
-	const logout = function(){
-		fetch('http://localhost:3000/cms/logout')
-		.then(resp=> resp.json())
-		.then(props.history.push('/login'))
 	}
 
 	return(
