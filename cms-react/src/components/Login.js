@@ -1,11 +1,11 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {useForm} from 'react-hook-form'
 import { Form,Button } from 'react-bootstrap';
-import NavigationBar from './NavigationBar'
-
+import AppContext  from '../context/AppContext'
 
 export default function Login(props) {
   const { register, handleSubmit, watch, errors } = useForm();
+  const logoutObject = useContext(AppContext)
 
   const onSubmit = function(data){
     fetch(`http://localhost:3000/cms/login/`, {
@@ -18,8 +18,10 @@ export default function Login(props) {
 
   const redirect=function(data){
     document.getElementById("name-form").reset()
-    if(data.status==="SUCCESS"){
+    if(data.status==="LOGIN SUCCESS"){
       props.history.push('/home');
+      logoutObject.shouldLogout = true
+      logoutObject.logoutFunc()
     }
   }
 
@@ -31,7 +33,6 @@ export default function Login(props) {
 
   return (
     <>
-    <NavigationBar />
     <div style={centerStyle}>
       <Form onSubmit={handleSubmit(onSubmit)} id="name-form">
         <Form.Group>

@@ -27,7 +27,6 @@ export default function HomePage(props){
 	return(
 		<>
 			<h1>{message}</h1>
-			<Button variant="primary" type="submit" onClick={logout}>Logout</Button>
 		</>
 	
 	)

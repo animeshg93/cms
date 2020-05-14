@@ -1,7 +1,6 @@
 import React from 'react';
 import {useForm} from 'react-hook-form'
 import { Form,Button } from 'react-bootstrap';
-import styles from '../css/mystyle.module.css'
 
 export default function NameForm(props) {
   const { register, handleSubmit, watch, errors } = useForm();
@@ -34,7 +33,7 @@ export default function NameForm(props) {
           <Form.Control name="password" type="password" ref={register} />
         </Form.Group>
         
-        <Button variant="primary" type="submit">{props.button}</Button>
+        <Button variant="primary" type="submit">Add</Button>
       </Form>
     </div>
   );

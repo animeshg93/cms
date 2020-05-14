@@ -18,8 +18,8 @@ def user_login(request):
 	user = authenticate(request, username=username, password=password)
 	if user is not None:
 		login(request, user)
-	else:
-		return JsonResponse({"status":"LOGIN FAILED","name":body["username"]})
+		return JsonResponse({"status":"LOGIN SUCCESS"})
+	return JsonResponse({"status":"LOGIN FAILED","name":body["username"]})
 
 @csrf_exempt
 def addAdmin(request):
