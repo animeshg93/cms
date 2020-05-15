@@ -1,8 +1,9 @@
 import React from 'react';
 import {useForm} from 'react-hook-form'
 import { Form,Button } from 'react-bootstrap';
+import styles from '../css/styles.module.css';
 
-export default function NameForm(props) {
+export default function NewUserForm(props) {
   const { register, handleSubmit, watch, errors } = useForm();
 
   const onSubmit = function(data){
@@ -14,14 +15,8 @@ export default function NameForm(props) {
       .then(document.getElementById("name-form").reset());
   }
 
-  const centerStyle = {
-    position: 'absolute', left: '50%', top: '50%',
-    transform: 'translate(-50%, -50%)',
-    marginTop:'10px'
-  }
-
   return (
-    <div style={centerStyle}>
+    <div className={styles.centerStyle}>
       <Form onSubmit={handleSubmit(onSubmit)} id="name-form">
         <Form.Group>
           <Form.Label>Username</Form.Label>

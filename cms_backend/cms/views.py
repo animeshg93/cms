@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import redirect
+from cms.models import Player
 import json
 
 def index(request):
@@ -37,3 +37,11 @@ def getNames(request):
 def user_logout(request):
 	logout(request)
 	return JsonResponse({"status":"LOGGED OUT!!"})	
+
+@csrf_exempt
+def addPlayer(request):
+	if request.method == "POST":
+			body = json.loads(request.body)
+			player = Player.objects.create(first_name=body["first_name"], last_name=body["last_name"], team_name=body["team_name"], years_played=body["years_played"])
+			player.save()
+			return JsonResponse({"status":player.first_name+" "+player.last_name + " created succesfully"})

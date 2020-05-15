@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import NameForm from './components/NameForm'
+import NewUserForm from './components/NewUserForm'
 import Login from './components/Login'
 import HomePage from './components/HomePage'
 import NavigationBar from './components/NavigationBar'
@@ -21,7 +21,7 @@ export default function App() {
 		<NavigationBar />
 	  	<BrowserRouter>
 	    	<Route path="/login" component={Login}  exact />
-	    	<Route path="/add" component={NameForm}/>
+	    	<Route path="/add" component={NewUserForm}/>
 	    	<Route path="/home" component={HomePage} />
 	     </BrowserRouter>
 	</UserProvider>
