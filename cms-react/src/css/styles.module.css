@@ -5,3 +5,11 @@
 	transform: translate(-50%, -50%);
 	margin-top:10px
 }
+
+.centerStyle_relative{
+	position: relative;
+	left: 50%; 
+	top: 50%;
+	transform: translate(-50%, -50%);
+	margin-top:10px
+}
