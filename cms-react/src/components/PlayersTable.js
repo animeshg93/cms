@@ -9,14 +9,13 @@ export default function PlayersTable(props){
 		fetch('http://localhost:3000/cms/getPlayers')
 		.then(resp=> resp.json())
 		.then(data=>setPlayersList(data))	
-		})
+		},[])
 
 	const renderRows = function(){
 		return playersList.map((player, index)=>{
 		  		const {first_name, last_name, team_name, years_played} = player 
 		  		return (
 		  		<tr>
-			      <td>{index+1}</td>
 			      <td>{first_name}</td>
 			      <td>{last_name}</td>
 			      <td>{team_name}</td>
@@ -30,7 +29,6 @@ export default function PlayersTable(props){
 		<Table striped bordered hover>
 		  <thead>
 		    <tr>
-		      <th>#</th>
 		      <th>First Name</th>
 		      <th>Last Name</th>
 		      <th>Team</th>

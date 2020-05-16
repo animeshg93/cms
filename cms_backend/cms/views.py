@@ -3,7 +3,14 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from cms.models import Player
+import boto3
+import uuid
+from boto3.dynamodb.conditions import Key, Attr
+from botocore.exceptions import ClientError
 import json
+
+dynamodb = boto3.resource("dynamodb", region_name='us-east-2')
+table = dynamodb.Table('Player')
 
 def index(request):
 	if not request.user.is_authenticated:
@@ -43,9 +50,10 @@ def addPlayer(request):
 	if request.method == "POST":
 			body = json.loads(request.body)
 			player = Player.objects.create(first_name=body["first_name"], last_name=body["last_name"], team_name=body["team_name"], years_played=body["years_played"])
-			player.save()
+			table.put_item(Item={'id':uuid.uuid4().hex, 'first_name':player.first_name,'last_name':player.last_name,
+				'team_name':player.team_name, 'years_played':player.years_played})
 			return JsonResponse({"status":player.first_name+" "+player.last_name + " created succesfully"})
 
 def getPlayers(request):
-	allNames = list(Player.objects.values())
-	return JsonResponse(allNames,safe=False)
+	response = table.scan()	
+	return JsonResponse(response["Items"], safe=False)

@@ -16,6 +16,8 @@ export default function NewPlayerForm(props) {
   }
 
   return (
+    <>
+      <h1>Add Players</h1>
       <Form onSubmit={handleSubmit(onSubmit)} id="name-form">
         <Form.Group>
           <Form.Label>First Name</Form.Label>
@@ -39,6 +41,7 @@ export default function NewPlayerForm(props) {
         
         <Button variant="primary" type="submit">Add Player</Button>
       </Form>
+    </>
   );
 }
 

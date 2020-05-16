@@ -22,6 +22,8 @@ export default function HomePage(props){
 	return(
 		<div className={styles.centerStyle} >
 			{playerFormShow && <NewPlayerForm />}
+			{playerFormShow &&<Button style={{marginTop:'10px'}} 
+					variant="secondary" type="submit" onClick={()=>setPlayerFormShow(false)}>Done</Button> }
 			{!playerFormShow &&<Button className={styles.centerStyle_relative} 
 					variant="primary" type="submit" onClick={()=>setPlayerFormShow(true)}>Add New Player</Button> }
 			{!playerFormShow && <PlayersTable />}
