@@ -7,26 +7,31 @@ import PlayersTable from './PlayersTable'
 
 export default function HomePage(props){
 	const [playerFormShow, setPlayerFormShow] = useState(false);
+	const [shouldRender, setShouldRender] = useState(false);
 
 	useEffect(() => {
 		fetch('http://localhost:3000/cms')
 		.then(resp=> resp.json())
 		.then(shouldRedirect)	
-		})
+	},[])
 	
-	const shouldRedirect = function(data){
+	const shouldRedirect = (data)=>{
 		if(data.status == "Login failed")
 			props.history.push('/login')
+		else
+			setShouldRender(true)
 	}
 
-	return(
-		<div className={styles.centerStyle} >
-			{playerFormShow && <NewPlayerForm />}
-			{playerFormShow &&<Button style={{marginTop:'10px'}} 
-					variant="secondary" type="submit" onClick={()=>setPlayerFormShow(false)}>Done</Button> }
-			{!playerFormShow &&<Button className={styles.centerStyle_relative} 
-					variant="primary" type="submit" onClick={()=>setPlayerFormShow(true)}>Add New Player</Button> }
-			{!playerFormShow && <PlayersTable />}
-		</div>
-	)
+	if(shouldRender){
+		return(	
+			 <div className={styles.centerStyle} >
+				{playerFormShow && <NewPlayerForm />}
+				{playerFormShow &&<Button style={{marginTop:'10px'}} 
+						variant="secondary" type="submit" onClick={()=>setPlayerFormShow(false)}>Done</Button> }
+				{!playerFormShow &&<Button className={styles.centerStyle_relative} 
+						variant="primary" type="submit" onClick={()=>setPlayerFormShow(true)}>Add New Player</Button> }
+				{!playerFormShow && <PlayersTable />}
+			</div>
+		)
+	}else return null;
 }

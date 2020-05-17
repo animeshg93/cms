@@ -15,7 +15,7 @@ table = dynamodb.Table('Player')
 def index(request):
 	if not request.user.is_authenticated:
 		return JsonResponse({"status":"Login failed"})
-	return JsonResponse({"status":"WELCOMEEE!!!!!"})
+	return JsonResponse({"status":"Access granted"})
 
 @csrf_exempt
 def user_login(request):

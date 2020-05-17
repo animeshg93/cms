@@ -8,7 +8,7 @@ export default function Login(props) {
   const { register, handleSubmit, watch, errors } = useForm();
   const logoutObject = useContext(AppContext)
 
-  const onSubmit = function(data){
+  const onSubmit = (data) => {
     fetch(`http://localhost:3000/cms/login/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -17,7 +17,7 @@ export default function Login(props) {
       .then(redirect);
   }
 
-  const redirect=function(data){
+  const redirect= (data) =>{
     document.getElementById("name-form").reset()
     if(data.status==="LOGIN SUCCESS"){
       props.history.push('/home');
