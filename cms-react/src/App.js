@@ -20,7 +20,7 @@ export default function App() {
   	<UserProvider value={auth}>
 		<NavigationBar />
 	  	<BrowserRouter>
-	    	<Route path="/login" component={Login}  exact />
+	    	<Route path="/login" component={Login} />
 	    	<Route path="/add" component={NewUserForm}/>
 	    	<Route path="/home" component={HomePage} />
 	     </BrowserRouter>
